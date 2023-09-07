@@ -20,11 +20,27 @@ export class TodosService {
     this.todos$.next(updatedTodos);
   }
 
+  updateTodo(id: string, text: string) {
+    const updatedTodos = this.todos$
+      .getValue()
+      .map((todo) => (todo.id === id ? { ...todo, text } : todo));
+    this.todos$.next(updatedTodos);
+  }
+
   toggleAll(checked: boolean): void {
     const updatedTodos = this.todos$.getValue().map((todo) => ({
       ...todo,
       isCompleted: checked,
     }));
+    this.todos$.next(updatedTodos);
+  }
+
+  changeFilter(filterName: FilterEnum) {
+    this.filterTodos$.next(filterName);
+  }
+
+  removeTodo(id: string) {
+    const updatedTodos = this.todos$.getValue().filter((x) => x.id !== id);
     this.todos$.next(updatedTodos);
   }
 }
