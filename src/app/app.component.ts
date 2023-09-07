@@ -9,9 +9,5 @@ import { TodosService } from './todos/services/todos.service';
 export class AppComponent {
   title = 'todoapp';
 
-  constructor(private todosService: TodosService) {
-    this.todosService.todos$.subscribe((v) => {
-      console.log(v, 'from app');
-    });
-  }
+  constructor() {}
 }

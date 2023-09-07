@@ -7,13 +7,8 @@ import { TodosService } from '../../services/todos.service';
 })
 export class HeaderComponent {
   text: string = '';
-  // todoService = new TodosService();
 
-  constructor(private todoService: TodosService) {
-    this.todoService.todos$.subscribe((v) => {
-      console.log(v, 'from header');
-    });
-  }
+  constructor(private todoService: TodosService) {}
 
   changeText(e: Event) {
     const target = e.target as HTMLInputElement;
@@ -22,5 +17,6 @@ export class HeaderComponent {
 
   addTodo(): void {
     this.todoService.addTodo(this.text);
+    this.text = '';
   }
 }
